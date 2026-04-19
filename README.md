@@ -1,1 +1,48 @@
 # caballo
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>...</title>
+    <style>
+        body, html { margin: 0; height: 100%; overflow: hidden; background: black; }
+        #pantalla {
+            width: 100%; height: 100%;
+            background: red;
+            display: flex; align-items: center; justify-content: center;
+            color: white; font-size: 28px; font-family: Arial; text-align: center;
+        }
+        .oculto { display: none; }
+    </style>
+</head>
+<body onclick="activar()">
+    <div id="pantalla">
+        <div id="susto">
+            <h1>⚠️MALWARE DETECTED⚠️</h1>
+            <p>ACCEDIENDO A TUS FOTOS...</p>
+        </div>
+        <div id="revelar" class="oculto">
+            <h1>You have been hacked</h1>
+            <p>Bye Bye</p>
+        </div>
+    </div>
+
+    <audio id="alarma" src="https://www.soundjay.com/misc/sounds/siren-noise-01.mp3"></audio>
+    
+    <script>
+        function activar() {
+            document.documentElement.requestFullscreen();
+            if (navigator.vibrate) navigator.vibrate([500, 200, 500, 200, 500]);
+            document.getElementById('alarma').play();
+            
+            // Después de 3 segundos cambia el texto
+            setTimeout(() => {
+                document.getElementById('susto').classList.add('oculto');
+                document.getElementById('revelar').classList.remove('oculto');
+                document.getElementById('pantalla').style.background = "black";
+            }, 3000);
+        }
+    </script>
+</body>
+</html>
